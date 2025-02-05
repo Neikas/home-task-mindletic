@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAppointmentRequest;
+use App\Mail\AppointmentBooked;
 use App\Models\Appointment;
 use App\Models\TimeSlot;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -23,6 +25,8 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::create($request->all());
         $timeSlot->update(['is_booked' => true]);
+
+        Mail::to($request->client_email)->send(new AppointmentBooked($appointment));
 
         return response()->json($appointment, 201);
     }

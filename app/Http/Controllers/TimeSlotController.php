@@ -49,6 +49,7 @@ class TimeSlotController extends Controller
     {
         $timeSlot = TimeSlot::findOrFail($id);
         $timeSlot->is_booked = true;
+        $timeSlot->save();
         return response()->json($timeSlot, 200);
     }
 
