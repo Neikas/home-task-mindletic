@@ -10,6 +10,11 @@
 3. Set Up Environment Variables
    Copy the .env.example file to .env:
     - cp .env.example .env
+    - Change database
+    ```bash
+    mysql -u root -e "CREATE DATABASE mindletic_laravel;"
+    mysql -u root -e "CREATE DATABASE mindletic_laravel_test;"
+    ```
 4. Generate Application Key
    Run the following command to generate the Laravel application key:
     - php artisan key:generate
